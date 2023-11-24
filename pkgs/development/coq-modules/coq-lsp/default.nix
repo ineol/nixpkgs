@@ -9,13 +9,13 @@ mkCoqDerivation rec {
 
   release."0.1.8+8.16".sha256 = "sha256-dEEAK5IXGjHB8D/fYJRQG/oCotoXJuWLxXB0GQlY2eo=";
   release."0.1.8+8.17".sha256 = "sha256-TmaE+osn/yAPU1Dyni/UTd5w/L2+qyPE3H/g6IWvHLQ=";
-  release."0.1.9+8.18".sha256 = "sha256-y/HhHGJvhoc21QkPNKrle13ixaH20Jek/dDwsj5zaS8=";
+  release."0.1.10+8.18".sha256 = "sha256-l5TTBaVHD/zAbP+JpsH45cqI7fTcB0VfUlnRzZSilmE=";
 
   inherit version;
   defaultVersion = with lib.versions; lib.switch coq.coq-version [
     { case = isEq "8.16"; out = "0.1.8+8.16"; }
     { case = isEq "8.17"; out = "0.1.8+8.17"; }
-    { case = isEq "8.18"; out = "0.1.9+8.18"; }
+    { case = isEq "8.18"; out = "0.1.10+8.18"; }
   ] null;
 
   nativeBuildInputs = [ makeWrapper ];
@@ -28,7 +28,7 @@ mkCoqDerivation rec {
   '';
 
   propagatedBuildInputs = [ serapi ]
-    ++ (with coq.ocamlPackages; [ camlp-streams dune-build-info menhir uri yojson ]);
+    ++ (with coq.ocamlPackages; [ camlp-streams dune-build-info menhir uri yojson ppx_inline_test ]);
 
   meta = with lib; {
     description = "Language Server Protocol and VS Code Extension for Coq";
